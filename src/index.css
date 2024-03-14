@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.task-completed {
+  color: red;
+  text-decoration: line-through;
+}
+
+.task-not-completed {
+  color: black;
+}
