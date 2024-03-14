@@ -1,24 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+// Task component
+function Task({ task }) {
+  return <li>{task}</li>;
+}
+
+// TaskList component
+function TaskList({ tasks }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ul>
+        {tasks.map((task, index) => (
+            <Task key={index} task={task} />
+        ))}
+      </ul>
+  );
+}
+
+// TaskInput component
+function TaskInput({ addTask }) {
+  const [input, setInput] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (input) {
+      addTask(input);
+      setInput('');
+    }
+  };
+
+  return (
+      <form onSubmit={handleSubmit}>
+        <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+        />
+        <button type="submit">Add Task</button>
+      </form>
+  );
+}
+
+// App component
+function App() {
+  const [tasks, setTasks] = useState([]);
+
+  const addTask = (task) => {
+    setTasks([...tasks, task]);
+  };
+
+  return (
+      <div>
+        <TaskInput addTask={addTask} />
+        <TaskList tasks={tasks} />
+      </div>
   );
 }
 
