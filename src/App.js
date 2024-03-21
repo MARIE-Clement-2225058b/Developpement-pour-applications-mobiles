@@ -1,15 +1,19 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Footer from './Footer';
 import Header from './Header';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 function App() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
-    const [newTaskDueDate, setNewTaskDueDate] = useState(''); // New state variable
+    const [newTaskDueDate, setNewTaskDueDate] = useState('');
     const [searchText, setSearchText] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-// Load tasks from localStorage on component mount
+    // Load tasks from localStorage on component mount
     useEffect(() => {
         const savedTasks = JSON.parse(localStorage.getItem('tasks'));
         if (savedTasks && savedTasks.length > 0) {
@@ -17,19 +21,21 @@ function App() {
         }
     }, []);
 
-// Save tasks to localStorage whenever tasks state changes
+    // Save tasks to localStorage whenever tasks state changes
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
 
 
-    // Add a new task
-    const addTask = () => {
-        if (newTask.trim() !== '' && newTaskDueDate.trim() !== '') {
-            setTasks([...tasks, { title: newTask, isChecked: false, dueDate: newTaskDueDate }]); // Include due date
-            setNewTask('');
-            setNewTaskDueDate(''); // Reset due date input field
-        }
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const confirmAddTask = () => {
+        setTasks([...tasks, { title: newTask, isChecked: false, dueDate: newTaskDueDate }]); // Include due date
+        setNewTask('');
+        setNewTaskDueDate(''); // Reset due date input field
+        setIsModalOpen(false);
     };
 
     // Toggle task completion
@@ -95,12 +101,19 @@ function App() {
                             <button onClick={() => deleteTask(index)}>Supprimer</button>
                             <button onClick={() => moveTask(index, 'up')} disabled={index === 0}>↑</button>
                             <button onClick={() => moveTask(index, 'down')} disabled={index === tasks.length - 1}>↓</button>
-                            <span className={task.isChecked ? 'checked' : ''}> {task.title}</span>
+                            <span className={task.isChecked ? 'checked' : ''}> {task.title} </span>
                             <span> - {task.dueDate} </span>
                         </li>
                     ))}
                 </ul>
                 <div className="add-task">
+                    <button onClick={openModal}>Ajouter une tâche</button>
+                </div>
+                <Modal
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                    contentLabel="Confirmation Modal">
+                    <h2>Créer une nouvelle tâche</h2>
                     <input
                         type="text"
                         placeholder="Ajouter une nouvelle tâche..."
@@ -112,8 +125,9 @@ function App() {
                         value={newTaskDueDate}
                         onChange={(e) => setNewTaskDueDate(e.target.value)}
                     />
-                    <button onClick={addTask}>Ajouter une tâche</button>
-                </div>
+                    <button onClick={confirmAddTask}>Confirmer</button>
+                    <button onClick={() => setIsModalOpen(false)}>Annuler</button>
+                </Modal>
             </div>
             <Footer />
         </div>
