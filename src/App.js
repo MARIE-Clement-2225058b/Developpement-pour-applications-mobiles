@@ -80,7 +80,12 @@ function App() {
                     {filteredTasks.map((task, index) => (
                         <li key={index}>
                             <span>{index + 1} </span>
-                            {new Date(task.dueDate) < new Date() ? <span>⚠️ </span> : <span style={{visibility: 'hidden'}}>⚠️ </span>}
+                            {new Date(task.dueDate) < new Date() ?
+                                <img src={process.env.PUBLIC_URL + '/alarme.gif'} alt="Alarme" width="50" height="50" /> :
+                                <span style={{visibility: 'hidden'}}>
+                                    <img src={process.env.PUBLIC_URL + '/alarme.gif'} alt="Alarme" width="50" height="50" />
+                                </span>
+                            }
                             <input
                                 type="checkbox"
                                 checked={task.isChecked}
