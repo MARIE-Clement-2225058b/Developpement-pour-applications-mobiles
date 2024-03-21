@@ -5,7 +5,29 @@
 
 div
 {
-  height: 100vh;
   justify-content: center;
   margin: 10px;
 }
+
+input[type="text"]
+{
+  width: 10%;
+  padding: 12px 0px;
+  margin: 8px 1px;
+  box-sizing: border-box;
+  border-style: none;
+
+}
+
+button
+{
+  background-color: firebrick;
+  color: white;
+}
+
+button:hover
+{
+  background-color: darkred;
+}
+
+

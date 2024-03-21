@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import Footer from './Footer';
+import Header from './Header';
 
 function App() {
     const [tasks, setTasks] = useState([]);
@@ -63,10 +65,10 @@ function App() {
 
     return (
         <div className="App">
-            <header>
-                <h1>Liste de tâches</h1>
-                <p>{tasks.filter(task => !task.isChecked).length} restantes sur {tasks.length}</p>
-            </header>
+            <Header />
+            <h2>Mes tâches</h2>
+            <br/>
+            <p>{tasks.filter(task => !task.isChecked).length} tâches restantes sur {tasks.length}</p>
             <div className="task-container">
                 <input
                     type="text"
@@ -108,6 +110,7 @@ function App() {
                     <button onClick={addTask}>Ajouter une tâche</button>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
