@@ -45,3 +45,29 @@ li {
   display: flex;
   align-items: center;
 }
+
+@media screen and (max-width: 600px) {
+  input[type="text"] {
+    width: 100%;
+    padding: 8px 0px;
+    margin: 4px 0px;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+
+  input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+  }
+
+
+}

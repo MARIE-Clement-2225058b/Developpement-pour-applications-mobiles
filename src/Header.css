@@ -9,3 +9,10 @@
     margin: 0px;
     padding: 0px;
 }
+
+@media screen and (max-width: 600px) {
+    .header {
+        padding: 10px;
+        font-size: 14px;
+    }
+}

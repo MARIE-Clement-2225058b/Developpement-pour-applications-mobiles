@@ -67,10 +67,10 @@ function App() {
         }
     };
 
-    // Filter tasks based on search text
-    const filteredTasks = tasks.filter(task =>
+// Filter tasks based on search text
+    const filteredTasks = searchText.length >= 3 ? tasks.filter(task =>
         task.title.toLowerCase().includes(searchText.toLowerCase())
-    );
+    ) : tasks;
 
     const searchInput = (
         <input
