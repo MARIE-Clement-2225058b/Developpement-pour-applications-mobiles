@@ -1,11 +1,12 @@
 import React from 'react';
 import './Footer.css';
 
-function Footer() {
+function Footer({ searchInput, addTaskButton }) {
     return (
-        <footer className="footer">
-            <p>Create by Me</p>
-        </footer>
+        <div className="footer">
+            {searchInput}
+            {addTaskButton}
+        </div>
     );
 }
 

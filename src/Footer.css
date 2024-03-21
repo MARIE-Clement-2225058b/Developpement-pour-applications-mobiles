@@ -1,9 +1,14 @@
 .footer {
-    position: page;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: firebrick;
     color: black;
     text-align: center;
+}
+
+div {
+    justify-content: center;
+    margin: auto;
 }

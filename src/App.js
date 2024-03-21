@@ -72,16 +72,24 @@ function App() {
         task.title.toLowerCase().includes(searchText.toLowerCase())
     );
 
+    const searchInput = (
+        <input
+            type="text"
+            placeholder="Rechercher des tâches..."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+        />
+    );
+
+    const addTaskButton = (
+        <button onClick={openModal}>Ajouter une tâche</button>
+    );
+
+
     return (
         <div className="App">
             <Header remainingTasks={remainingTasks} totalTasks={totalTasks} />
             <div className="task-container">
-                <input
-                    type="text"
-                    placeholder="Rechercher des tâches..."
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                />
                 <ul>
                     {filteredTasks.map((task, index) => (
                         <li key={index}>
@@ -106,9 +114,6 @@ function App() {
                         </li>
                     ))}
                 </ul>
-                <div className="add-task">
-                    <button onClick={openModal}>Ajouter une tâche</button>
-                </div>
                 <Modal
                     isOpen={isModalOpen}
                     onRequestClose={() => setIsModalOpen(false)}
@@ -129,7 +134,7 @@ function App() {
                     <button onClick={() => setIsModalOpen(false)}>Annuler</button>
                 </Modal>
             </div>
-            <Footer />
+            <Footer searchInput={searchInput} addTaskButton={addTaskButton} />
         </div>
     );
 }
