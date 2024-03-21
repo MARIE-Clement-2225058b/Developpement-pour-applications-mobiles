@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
 function App() {
+
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
     const [newTaskDueDate, setNewTaskDueDate] = useState('');
