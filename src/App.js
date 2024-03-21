@@ -95,9 +95,9 @@ function App() {
                         <li key={index}>
                             <span>{index + 1} </span>
                             {new Date(task.dueDate) < new Date() ?
-                                <img src={process.env.PUBLIC_URL + '/alarme.gif'} alt="Alarme" width="50" height="50" /> :
+                                <img src={process.env.PUBLIC_URL + '/alarme.gif'} alt="Alarme" width="40" height="40" /> :
                                 <span style={{visibility: 'hidden'}}>
-                                    <img src={process.env.PUBLIC_URL + '/alarme.gif'} alt="Alarme" width="50" height="50" />
+                                    <img src={process.env.PUBLIC_URL + '/alarme.gif'} alt="Alarme" width="40" height="40" />
                                 </span>
                             }
                             <input
@@ -110,7 +110,7 @@ function App() {
                             <button onClick={() => moveTask(index, 'up')} disabled={index === 0}>↑</button>
                             <button onClick={() => moveTask(index, 'down')} disabled={index === tasks.length - 1}>↓</button>
                             <span className={task.isChecked ? 'checked' : ''}> {task.title} </span>
-                            <span> - {task.dueDate} </span>
+                            <span> / {task.dueDate} </span>
                         </li>
                     ))}
                 </ul>
