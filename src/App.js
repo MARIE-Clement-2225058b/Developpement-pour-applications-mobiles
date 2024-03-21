@@ -107,7 +107,9 @@ function App() {
                                 onChange={() => toggleTask(index)}
                             />
 
-                            <button onClick={() => deleteTask(index)}>Supprimer</button>
+                            <button onClick={() => deleteTask(index)}>
+                                <img src={process.env.PUBLIC_URL + '/supprimer.png'} alt="Supprimer" width="20" height="20"/>
+                            </button>
                             <button onClick={() => moveTask(index, 'up')} disabled={index === 0}>↑</button>
                             <button onClick={() => moveTask(index, 'down')} disabled={index === tasks.length - 1}>↓</button>
                             <span className={task.isChecked ? 'checked' : ''}> {task.title} </span>
