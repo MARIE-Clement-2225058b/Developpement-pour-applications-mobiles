@@ -11,11 +11,12 @@ div
 
 input[type="text"]
 {
-  width: 10%;
+  width: 25%;
   padding: 12px 0px;
   margin: 8px 1px;
   box-sizing: border-box;
   border-style: none;
+  border-bottom: 2px solid #f9f9f9;
 
 }
 

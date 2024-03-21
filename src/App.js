@@ -12,6 +12,9 @@ function App() {
     const [newTaskDueDate, setNewTaskDueDate] = useState('');
     const [searchText, setSearchText] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const remainingTasks = tasks.filter(task => !task.isChecked).length;
+    const totalTasks = tasks.length;
+
 
     // Load tasks from localStorage on component mount
     useEffect(() => {
@@ -71,10 +74,7 @@ function App() {
 
     return (
         <div className="App">
-            <Header />
-            <h2>Mes tâches</h2>
-            <br/>
-            <p>{tasks.filter(task => !task.isChecked).length} tâches restantes sur {tasks.length}</p>
+            <Header remainingTasks={remainingTasks} totalTasks={totalTasks} />
             <div className="task-container">
                 <input
                     type="text"
